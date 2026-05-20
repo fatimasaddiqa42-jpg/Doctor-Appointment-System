@@ -1,0 +1,58 @@
+﻿@model DoctorAppointmentSystem.Models.Appointment
+
+@{
+    ViewData["Title"] = "Cancel Appointment";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card border-warning">
+            <div class="card-header bg-warning text-dark py-3">
+                <h4 class="mb-0">
+                    <i class="fas fa-ban me-2"></i>
+                    Cancel Appointment?
+                </h4>
+            </div>
+            <div class="card-body p-4">
+                <table class="table table-borderless">
+                    <tr>
+                        <td class="fw-bold">Doctor:</td>
+                        <td>@Model.Doctor.Name</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Patient:</td>
+                        <td>@Model.Patient.Name</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Date & Time:</td>
+                        <td>
+                            @Model.AppointmentDate.ToString("dd MMM yyyy hh:mm tt")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Status:</td>
+                        <td>
+                            <span class="badge bg-warning text-dark">
+                                @Model.Status
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+                <form asp-action="Cancel">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="d-flex gap-2 mt-3">
+                        <button type="submit" class="btn btn-warning">
+                            <i class="fas fa-ban me-2"></i>
+                            Yes, Cancel It
+                        </button>
+                        <a asp-action="Index"
+                               class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>
+                            No, Go Back
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

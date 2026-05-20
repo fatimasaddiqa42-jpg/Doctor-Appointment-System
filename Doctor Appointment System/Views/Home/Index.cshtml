@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="p-5 mb-4 rounded-3 text-white text-center"
+     style="background: linear-gradient(135deg, #1a73e8, #0d47a1);">
+    <div class="container-fluid py-3">
+        <h1 class="display-5 fw-bold">
+            <i class="fas fa-hospital-alt me-2"></i>
+            Doctor Appointment System
+        </h1>
+        <p class="col-md-8 fs-4 mx-auto">
+            Book your doctor appointment and manage your health easily
+        </p>
+        <a asp-controller="Appointments" asp-action="Create"
+               class="btn btn-light btn-lg mt-2">
+            <i class="fas fa-calendar-plus me-2"></i>
+            Book Appointment
+        </a>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-4 mb-3">
+        <div class="card h-100">
+            <div class="card-body text-center p-4">
+                <i class="fas fa-user-md fa-3x mb-3"
+                   style="color: #1a73e8;"></i>
+                <h3 class="card-title fw-bold">Our Doctors</h3>
+                <p class="card-text text-muted">
+                    Experienced and qualified doctors
+                </p>
+                <a asp-controller="Doctors" asp-action="Index"
+                       class="btn btn-primary">
+                    View Doctors
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card h-100">
+            <div class="card-body text-center p-4">
+                <i class="fas fa-procedures fa-3x mb-3"
+                   style="color: #1a73e8;"></i>
+                <h3 class="card-title fw-bold">Our Patients</h3>
+                <p class="card-text text-muted">
+                    Complete history of registered patients
+                </p>
+                <a asp-controller="Patients" asp-action="Index"
+                       class="btn btn-primary">
+                    View Patients
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card h-100">
+            <div class="card-body text-center p-4">
+                <i class="fas fa-calendar-check fa-3x mb-3"
+                   style="color: #1a73e8;"></i>
+                <h3 class="card-title fw-bold">Appointments</h3>
+                <p class="card-text text-muted">
+                    Book and manage your appointments easily
+                </p>
+                <a asp-controller="Appointments" asp-action="Index"
+                       class="btn btn-primary">
+                    View Appointments
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

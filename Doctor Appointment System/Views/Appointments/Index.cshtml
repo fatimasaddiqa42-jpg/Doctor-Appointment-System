@@ -1,0 +1,104 @@
+﻿@model IEnumerable<DoctorAppointmentSystem.Models.Appointment>
+
+@{
+    ViewData["Title"] = "Appointments";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold" style="color: #1a73e8;">
+        <i class="fas fa-calendar-check me-2"></i>All Appointments
+    </h2>
+    <a asp-action="Create" class="btn btn-primary">
+        <i class="fas fa-plus me-2"></i>Book New Appointment
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th><i class="fas fa-hashtag me-1"></i>#</th>
+                <th><i class="fas fa-user-md me-1"></i>Doctor</th>
+                <th><i class="fas fa-procedures me-1"></i>Patient</th>
+                <th><i class="fas fa-calendar me-1"></i>Date & Time</th>
+                <th><i class="fas fa-info-circle me-1"></i>Status</th>
+                <th><i class="fas fa-cogs me-1"></i>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>
+                        <strong>@item.Doctor.Name</strong>
+                        <br />
+                        <small class="text-muted">
+                            @item.Doctor.Specialization
+                        </small>
+                    </td>
+                    <td>@item.Patient.Name</td>
+                    <td>
+                        @item.AppointmentDate.ToString("dd MMM yyyy")
+                        <br />
+                        <small class="text-muted">
+                            @item.AppointmentDate.ToString("hh:mm tt")
+                        </small>
+                    </td>
+                    <td>
+                        @if (item.Status == "Pending")
+                        {
+                            <span class="badge bg-warning text-dark">
+                                <i class="fas fa-clock me-1"></i>Pending
+                            </span>
+                        }
+                        else if (item.Status == "Confirmed")
+                        {
+                            <span class="badge bg-success">
+                                <i class="fas fa-check me-1"></i>Confirmed
+                            </span>
+                        }
+                        else if (item.Status == "Cancelled")
+                        {
+                            <span class="badge bg-danger">
+                                <i class="fas fa-times me-1"></i>Cancelled
+                            </span>
+                        }
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id"
+                               class="btn btn-sm btn-info text-white me-1">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a asp-action="Edit" asp-route-id="@item.Id"
+                               class="btn btn-sm btn-warning me-1">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        @if (item.Status != "Cancelled")
+                        {
+                            <a asp-action="Cancel" asp-route-id="@item.Id"
+                                   class="btn btn-sm btn-secondary me-1">
+                                <i class="fas fa-ban"></i>
+                            </a>
+                        }
+                        <a asp-action="Delete" asp-route-id="@item.Id"
+                               class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="text-center py-5">
+        <i class="fas fa-calendar-times fa-4x text-muted mb-3"></i>
+        <h4 class="text-muted">No appointments found</h4>
+        <a asp-action="Create" class="btn btn-primary mt-2">
+            <i class="fas fa-plus me-2"></i>Book First Appointment
+        </a>
+    </div>
+}

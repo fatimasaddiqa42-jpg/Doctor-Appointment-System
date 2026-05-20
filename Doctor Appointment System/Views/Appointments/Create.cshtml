@@ -1,0 +1,91 @@
+﻿@model DoctorAppointmentSystem.Models.Appointment
+
+@{
+    ViewData["Title"] = "Book Appointment";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header text-white py-3"
+                 style="background: linear-gradient(135deg, #1a73e8, #0d47a1);">
+                <h4 class="mb-0">
+                    <i class="fas fa-calendar-plus me-2"></i>
+                    Book New Appointment
+                </h4>
+            </div>
+            <div class="card-body p-4">
+
+                <form asp-action="Create" method="post">
+                    @Html.AntiForgeryToken()
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            <i class="fas fa-user-md me-1"></i>Select Doctor
+                        </label>
+                        <select name="DoctorId"
+                                class="form-select" required>
+                            <option value="">-- Select Doctor --</option>
+                            @foreach (var item in ViewBag.DoctorId)
+                            {
+                                <option value="@item.Value">
+                                    @item.Text
+                                </option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            <i class="fas fa-procedures me-1"></i>Select Patient
+                        </label>
+                        <select name="PatientId"
+                                class="form-select" required>
+                            <option value="">-- Select Patient --</option>
+                            @foreach (var item in ViewBag.PatientId)
+                            {
+                                <option value="@item.Value">
+                                    @item.Text
+                                </option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            <i class="fas fa-calendar me-1"></i>Date & Time
+                        </label>
+                        <input name="AppointmentDate"
+                               class="form-control"
+                               type="datetime-local" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">
+                            <i class="fas fa-sticky-note me-1"></i>
+                            Notes (Optional)
+                        </label>
+                        <textarea name="Notes"
+                              class="form-control"
+                              rows="3"
+                                  placeholder="Any important notes...">
+                        </textarea>
+                    </div>
+
+                    <input type="hidden" name="Status" value="Pending" />
+
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-calendar-check me-2"></i>
+                            Book Appointment
+                        </button>
+                        <a asp-action="Index"
+                               class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Go Back
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

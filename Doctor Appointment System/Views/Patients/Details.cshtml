@@ -1,0 +1,83 @@
+﻿@model DoctorAppointmentSystem.Models.Patient
+
+@{
+    ViewData["Title"] = "Patient Details";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <div class="card">
+            <div class="card-header text-white py-3"
+                 style="background: linear-gradient(135deg, #1a73e8, #0d47a1);">
+                <h4 class="mb-0">
+                    <i class="fas fa-procedures me-2"></i>Patient Details
+                </h4>
+            </div>
+            <div class="card-body p-4">
+                <div class="text-center mb-4">
+                    <div class="rounded-circle d-inline-flex
+                        align-items-center justify-content-center mb-3"
+                         style="width:100px; height:100px;
+                        background: linear-gradient(135deg, #1a73e8, #0d47a1);">
+                        <i class="fas fa-user fa-3x text-white"></i>
+                    </div>
+                    <h4 class="fw-bold">@Model.Name</h4>
+                </div>
+
+                <table class="table table-borderless">
+                    <tr>
+                        <td class="fw-bold" style="width:40%">
+                            <i class="fas fa-hashtag me-2 text-primary"></i>ID:
+                        </td>
+                        <td>@Model.Id</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">
+                            <i class="fas fa-user me-2 text-primary"></i>Name:
+                        </td>
+                        <td>@Model.Name</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">
+                            <i class="fas fa-birthday-cake me-2 text-primary"></i>
+                            Date of Birth:
+                        </td>
+                        <td>@Model.DateOfBirth.ToString("dd MMM yyyy")</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">
+                            <i class="fas fa-envelope me-2 text-primary"></i>
+                            Email:
+                        </td>
+                        <td>@Model.Email</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">
+                            <i class="fas fa-phone me-2 text-primary"></i>
+                            Phone:
+                        </td>
+                        <td>@Model.Phone</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">
+                            <i class="fas fa-map-marker me-2 text-primary"></i>
+                            Address:
+                        </td>
+                        <td>@Model.Address</td>
+                    </tr>
+                </table>
+
+                <div class="d-flex gap-2 mt-3">
+                    <a asp-action="Edit" asp-route-id="@Model.Id"
+                           class="btn btn-warning">
+                        <i class="fas fa-edit me-2"></i>Edit
+                    </a>
+                    <a asp-action="Index"
+                           class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>Go Back
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
